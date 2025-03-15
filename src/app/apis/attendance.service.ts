@@ -6,7 +6,10 @@ export type StatusTypeLiteral = (typeof STATUS)[number];
 
 export interface MemberAttendanceRecord {
   name: string;
-  status: StatusTypeLiteral[];
+  status: {
+    type: StatusTypeLiteral;
+    date: string;
+  }[];
 }
 
 export interface GetAttendanceTableResponse {
@@ -27,13 +30,14 @@ export class AttendanceService {
     return of(target ?? null);
   }
 
-  registerAttendance(title: string, candidateDate: string[]): void {
+  registerAttendance(title: string, candidateDate: string[]): Observable<void> {
     this.database.push({
       uuid: crypto.randomUUID(),
       title,
       candidateDate: [...candidateDate],
       records: [],
     });
+    return of();
   }
 
   deleteAttendance(uuid: string): Observable<void> {
@@ -50,7 +54,7 @@ export class AttendanceService {
     return of(true);
   }
 
-  updateUserAttendance(uuid: string, name: string, status: StatusTypeLiteral[]): Observable<boolean> {
+  updateUserAttendance(uuid: string, name: string, status: MemberAttendanceRecord['status']): Observable<boolean> {
     const targetAttendance = this.database.find((item) => item.uuid === uuid);
     if (targetAttendance === undefined) {
       return of(false);
@@ -63,7 +67,7 @@ export class AttendanceService {
     return of(true);
   }
 
-  deleteUser(uuid: string, name: string): Observable<void> {
+  deleteUserAttendance(uuid: string, name: string): Observable<void> {
     const targetAttendance = this.database.find((item) => item.uuid === uuid);
     if (targetAttendance === undefined) {
       return of();
