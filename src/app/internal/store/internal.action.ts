@@ -23,5 +23,6 @@ export const deleteUserAttendance = createAction(
   '[Attendance Sheet] Delete User Attendance',
   props<{ uuid: string; name: string }>(),
 );
+export const reset = createAction('[Attendance Sheet] Reset');
 export const success = createAction('[Attendance Sheet] Success');
 export const failed = createAction('[Attendance Sheet] Failed');

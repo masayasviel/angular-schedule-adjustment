@@ -7,8 +7,8 @@ import * as AttendanceActions from './internal.action';
 
 @Injectable()
 export class MoviesEffects {
-  private actions$ = inject(Actions);
   private readonly snackBar = inject(MatSnackBar);
+  private actions$ = inject(Actions);
   private attendanceService = inject(AttendanceService);
 
   getAttendance$ = createEffect(() => {
