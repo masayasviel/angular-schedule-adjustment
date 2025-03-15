@@ -1,6 +1,6 @@
+import { TemplateComponent } from '@/internal/template/template.component';
+import { TopComponent } from '@/top/top.component';
 import { Routes } from '@angular/router';
-import { TemplateComponent } from './internal/template/template.component';
-import { TopComponent } from './top/top.component';
 
 export const routes: Routes = [
   {

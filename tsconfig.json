@@ -21,7 +21,12 @@
     "lib": [
       "ES2022",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@/api/*": ["./src/app/apis/*"],
+      "@/internal/*": ["./src/app/internal/*"],
+      "@/top/*": ["./src/app/top/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
